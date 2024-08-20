@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/service-definition-2.1.xsd">
+    <service verb="create" noun="TiktokShop">
+        <in-parameters>
+            <parameter name="pseudoId" required="true"/>
+            <parameter name="disabled" default-value="N"/>
+            <parameter name="ownerPartyId" default-value="_NA_"/>
+            <parameter name="name" />
+            <parameter name="shopId" />
+        </in-parameters>
+        <actions>
+            <service-call name="create#mantle.party.Party" out-map="context"
+                          in-map="[pseudoId: pseudoId, disabled: disabled, partyTypeEnumId: 'PtyOrganization', ownerPartyId: ownerPartyId,
+                          externalId: shopId]"/>
+            <service-call name="create#mantle.party.Organization" out-map="context"
+                          in-map="[partyId: partyId, organizationName: name]"/>
+            <service-call name="create#mantle.party.PartyRelationship" out-map="context"
+                          in-map="[relationshipTypeEnumId: 'PrtTiktokShop', fromPartyId: partyId, fromRoleTypeId: 'TiktokShop',
+                          toPartyId: 'Tiktok', toRoleTypeId: 'SocialMedia', fromDate: ec.user.nowTimestamp]"/>
+        </actions>
+    </service>
+    <service verb="get" noun="AccessToken" type="camel" location="moquiservice://gsources.integration.TiktokServices.getAccessToken">
+        <in-parameters>
+            <parameter name="refreshToken" required="true"/>
+        </in-parameters>
+    </service>
+    <service verb="getResponse" noun="AccessToken" location="moquiservice://gsources.integration.TiktokServices.getResponseAccessToken">
+        <in-parameters>
+            <parameter name="data" type="List"/>
+        </in-parameters>
+        <actions>
+            <set field="accessToken" from="data?.access_token"/>
+            <set field="refreshToken" from="data?.refresh_token"/>
+            
+            <entity-find-one entity-name="mantle.party.PartySetting" value-field="atEntity">
+                <field-map field-name="partyId" value="Tiktok"/>
+                <field-map field-name="partySettingTypeId" value="TiktokAccessToken"/>
+            </entity-find-one>
+            <entity-find-one entity-name="mantle.party.PartySetting" value-field="rtEntity">
+                <field-map field-name="partyId" value="Tiktok"/>
+                <field-map field-name="partySettingTypeId" value="TiktokRefreshToken"/>
+            </entity-find-one>
+
+            <set field="atEntity.settingValue" from="accessToken"/>
+            <set field="rtEntity.settingValue" from="refreshToken"/>
+
+            <entity-update value-field="atEntity"/>
+            <entity-update value-field="rtEntity"/>
+        </actions>
+    </service>
+</services>

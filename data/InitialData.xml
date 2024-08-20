@@ -13,5 +13,20 @@ along with this software (see the LICENSE.md file). If not, see
 <http://creativecommons.org/publicdomain/zero/1.0/>.
 -->
 <entity-facade-xml type="seed-initial">
+    <mantle.party.Party partyId="Tiktok" pseudoId="Tiktok" partyTypeEnumId="PtyOrganization" disabled="N" ownerPartyId="ORG_COMPANY_CORP" />
+    <mantle.party.PartySettingType partySettingTypeId="TiktokCode" description="Tiktok code" />
+    <mantle.party.PartySetting partyId="Tiktok" partySettingTypeId="TiktokCode" settingValue="ROW_U3KfIwAAAADAoGT8Ly6uVmtTTv0MDzvmextyajRr_1G_Ev_J_5eDUfcTmCHUajkaPIqpAtCkvFYcTFA9LrrDvhkSdn_5aJidG1i2NXlL59n3i-lSREIFNQu5Pd1Dta2NgzCl8-v8R1cNJMnvPbV8Pjbxdhg3t_3pYPzoGRCW_6Embk9W-d3lTw"/>
 
+    <mantle.party.PartySettingType partySettingTypeId="TiktokAccessToken" description="Tiktok Access Token" />
+    <mantle.party.PartySettingType partySettingTypeId="TiktokRefreshToken" description="Tiktok Refresh Token" />
+    <mantle.party.PartySetting partyId="Tiktok" partySettingTypeId="TiktokAccessToken" settingValue="ROW_KAtcewAAAAA4XjjfkcXchyborJHBF0JwjtDYMYwvOc472XHZBAdiqjJ-gvB9cu4IQjD-hs9B29SU60YV6SnlbI8yto-UehqwmDMtR3bAVflDjuk_yH_sM-NVmJExZPmvu2KrUCEhfpajH4eYhV0SAbi_4g5hM-r43qk6sUlBCONZlQ-gpkvOCQ"/>
+    <mantle.party.PartySetting partyId="Tiktok" partySettingTypeId="TiktokRefreshToken" settingValue="ROW_g8nA0QAAAADAdh075EGuL4DRDwDhtjZH4YHpaUUUuhXNrRd1iQQ7BZNkGn-RMN4xS5bhKchzBO0"/>
+
+    <moqui.basic.Enumeration enumId="PrtTiktokShop" enumTypeId="PartyRelationshipType" description="Tiktok Shop"/>
+    <mantle.party.RoleType roleTypeId="TiktokShop" description="Tiktok Shop"/>
+
+    <moqui.security.ArtifactGroup artifactGroupId="TIKTOK_API" description="TIKTOK REST API">
+        <artifacts artifactName="/tiktok" artifactTypeEnumId="AT_REST_PATH" inheritAuthz="Y"/>
+        <authz userGroupId="ADMIN" authzTypeEnumId="AUTHZT_ALWAYS" authzActionEnumId="AUTHZA_ALL"/>
+    </moqui.security.ArtifactGroup>
 </entity-facade-xml>

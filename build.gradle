@@ -5,7 +5,7 @@ apply plugin: 'groovy'
 
 def componentNode = parseComponent(project)
 version = componentNode.'@version'
-def jarBaseName = 'integration_facebook'
+def jarBaseName = 'integration_tiktok'
 def moquiDir = projectDir.parentFile.parentFile.parentFile
 def frameworkDir = file(moquiDir.absolutePath + '/framework')
 
