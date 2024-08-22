@@ -13,7 +13,8 @@ along with this software (see the LICENSE.md file). If not, see
 <http://creativecommons.org/publicdomain/zero/1.0/>.
 -->
 <entity-facade-xml type="seed-initial">
-    <mantle.party.Party partyId="Tiktok" pseudoId="Tiktok" partyTypeEnumId="PtyOrganization" disabled="N" ownerPartyId="ORG_COMPANY_CORP" />
+    <mantle.party.Party partyId="Tiktok" pseudoId="Tiktok" partyTypeEnumId="PtyOrganization" disabled="N" ownerPartyId="_NA_" />
+    <mantle.party.PartyRole partyId="Tiktok" roleTypeId="SocialMedia" />
     <mantle.party.PartySettingType partySettingTypeId="TiktokCode" description="Tiktok code" />
     <mantle.party.PartySetting partyId="Tiktok" partySettingTypeId="TiktokCode" settingValue="ROW_U3KfIwAAAADAoGT8Ly6uVmtTTv0MDzvmextyajRr_1G_Ev_J_5eDUfcTmCHUajkaPIqpAtCkvFYcTFA9LrrDvhkSdn_5aJidG1i2NXlL59n3i-lSREIFNQu5Pd1Dta2NgzCl8-v8R1cNJMnvPbV8Pjbxdhg3t_3pYPzoGRCW_6Embk9W-d3lTw"/>
 
